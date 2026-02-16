@@ -1,63 +1,134 @@
 "use client"
 
+import { useState } from "react"
+import { Swiper, SwiperSlide } from "swiper/react"
+import { Autoplay, Pagination, Navigation } from "swiper/modules"
+
+import "swiper/css"
+import "swiper/css/pagination"
+import "swiper/css/navigation"
+
 const projects = [
   {
     title: "E-Commerce Platform",
     category: "Web Development",
     image: "/modern-ecommerce-interface.jpg",
+    description:
+      "A full-featured online store with payment integration, admin dashboard, and analytics.",
+    client: "Retail Startup",
+    year: "2024",
   },
   {
     title: "Fitness Mobile App",
     category: "Mobile App Development",
     image: "/fitness-tracking-app.jpg",
+    description:
+      "Cross-platform fitness app with tracking, scheduling, and real-time analytics.",
+    client: "HealthTech Co.",
+    year: "2023",
   },
   {
-    title: "Brand Identity Design",
-    category: "Graphics Design",
-    image: "/brand.jpg",
+    title: "E-Commerce Platform",
+    category: "Web Development",
+    image: "/modern-ecommerce-interface.jpg",
+    description:
+      "A full-featured online store with payment integration, admin dashboard, and analytics.",
+    client: "Retail Startup",
+    year: "2024",
   },
   {
-    title: "SaaS Dashboard",
-    category: "UI/UX Design",
-    image: "/dashboard.jpg",
+    title: "Fitness Mobile App",
+    category: "Mobile App Development",
+    image: "/fitness-tracking-app.jpg",
+    description:
+      "Cross-platform fitness app with tracking, scheduling, and real-time analytics.",
+    client: "HealthTech Co.",
+    year: "2023",
   },
-  {
-    title: "Product Promo Video",
-    category: "Video Editing",
-    image: "/professional-product-video-thumbnail.jpg",
-  },
-  
 ]
 
 export default function Portfolio() {
-  return (
-    <section id="portfolio" className="py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl font-bold mb-4">Our Portfolio</h2>
-          <p className="text-foreground/70 text-lg max-w-2xl mx-auto">
-            Showcase of our best work across all service categories
-          </p>
-        </div>
+  const [selectedProject, setSelectedProject] = useState<any>(null)
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+  return (
+    <section className="py-20 px-4">
+      <div className="max-w-7xl mx-auto">
+
+        {/* SLIDER */}
+        <Swiper
+          modules={[Autoplay, Pagination, Navigation]}
+          spaceBetween={30}
+          slidesPerView={1}
+          autoplay={{ delay: 3000 }}
+          pagination={{ clickable: true }}
+          navigation
+          breakpoints={{
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+          }}
+        >
           {projects.map((project, index) => (
+            <SwiperSlide key={index}>
+              <div
+                onClick={() => setSelectedProject(project)}
+                className="cursor-pointer group relative overflow-hidden rounded-xl bg-card border border-border hover:border-primary/50 transition duration-300"
+              >
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-64 object-cover group-hover:scale-110 transition duration-300"
+                />
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-6">
+                  <h3 className="text-white text-xl font-bold">
+                    {project.title}
+                  </h3>
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+
+        {/* MODAL */}
+        {selectedProject && (
+          <div
+            className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4"
+            onClick={() => setSelectedProject(null)}
+          >
             <div
-              key={index}
-              className="group relative overflow-hidden rounded-xl bg-card border border-border hover:border-primary/50 transition duration-300"
+              className="bg-background rounded-xl max-w-2xl w-full p-6 relative"
+              onClick={(e) => e.stopPropagation()}
             >
+              <button
+                className="absolute top-4 right-4 text-xl"
+                onClick={() => setSelectedProject(null)}
+              >
+                ✕
+              </button>
+
               <img
-                src={project.image || "/placeholder.svg"}
-                alt={project.title}
-                className="w-full h-64 object-cover group-hover:scale-110 transition duration-300"
+                src={selectedProject.image}
+                alt={selectedProject.title}
+                className="w-full h-64 object-cover rounded-lg mb-6"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-end p-6">
-                <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                <p className="text-primary text-sm">{project.category}</p>
+
+              <h2 className="text-2xl font-bold mb-2">
+                {selectedProject.title}
+              </h2>
+              <p className="text-primary mb-4">
+                {selectedProject.category}
+              </p>
+
+              <p className="text-foreground/80 mb-4">
+                {selectedProject.description}
+              </p>
+
+              <div className="flex justify-between text-sm text-muted-foreground">
+                <span>Client: {selectedProject.client}</span>
+                <span>Year: {selectedProject.year}</span>
               </div>
             </div>
-          ))}
-        </div>
+          </div>
+        )}
       </div>
     </section>
   )

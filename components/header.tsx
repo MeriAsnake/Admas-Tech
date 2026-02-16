@@ -14,7 +14,7 @@ export default function Header() {
           href="/"
           className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"
         >
-          Admas Tech
+          Horizon Tech
         </Link>
 
         {/* Desktop Menu */}
@@ -28,14 +28,14 @@ export default function Header() {
           <Link href="#contact" className="text-foreground/80 hover:text-foreground transition">
             Contact
           </Link>
-          <button className="px-6 py-2 bg-primary text-primary-foreground rounded-full hover:bg-primary/90 transition">
+          <button className="px-5 py-2 bg-primary text-primary-foreground rounded-full hover:bg-primary/90 transition">
             Get Started
           </button>
         </div>
 
         {/* Mobile Menu Button */}
         <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
+          {isOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
 
         {/* Mobile Menu */}

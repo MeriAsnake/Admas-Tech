@@ -9,7 +9,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           <div>
             <h3 className="text-xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              Admas Tech
+              Horizon Tech
             </h3>
             <p className="text-foreground/60 text-sm">
               Transforming ideas into digital reality with creativity and innovation.

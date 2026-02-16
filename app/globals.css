@@ -4,15 +4,15 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: oklch(0.08 0 0);
+  --background: oklch(27.469% 0.05195 143.163);
   --foreground: oklch(0.98 0 0);
   --card: oklch(0.12 0 0);
   --card-foreground: oklch(0.98 0 0);
   --popover: oklch(0.12 0 0);
   --popover-foreground: oklch(0.98 0 0);
-  --primary: oklch(0.65 0.2 280);
+  --primary: oklch(64.885% 0.12645 234.597);
   --primary-foreground: oklch(0.98 0 0);
-  --secondary: oklch(0.45 0.15 280);
+  --secondary: oklch(89.368% 0.20625 118.385);
   --secondary-foreground: oklch(0.98 0 0);
   --muted: oklch(0.25 0 0);
   --muted-foreground: oklch(0.7 0 0);
@@ -39,7 +39,7 @@
   --sidebar-ring: oklch(0.65 0.2 280);
 }
 
-.dark {
+/*.dark {
   --background: oklch(0.08 0 0);
   --foreground: oklch(0.98 0 0);
   --card: oklch(0.12 0 0);
@@ -72,7 +72,7 @@
   --sidebar-accent-foreground: oklch(0.98 0 0);
   --sidebar-border: oklch(0.2 0 0);
   --sidebar-ring: oklch(0.65 0.2 280);
-}
+} */
 
 @theme inline {
   --font-sans: "Geist", "Geist Fallback";
